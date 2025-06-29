@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planix - Your Productivity App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Animated Background -->
+        <div class="animated-bg"></div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile">
+                <div class="profile-pic" id="profilePic">P</div>
+                <h3 id="userName">User</h3>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li class="active"><a href="#dashboard"><i class="fas fa-tasks"></i> Tasks</a></li>
+                    <li><a href="#timer"><i class="fas fa-clock"></i> Timer</a></li>
+                    <li><a href="#alarm"><i class="fas fa-bell"></i> Alarm</a></li>
+                    <li><a href="#notes"><i class="fas fa-sticky-note"></i> Notes</a></li>
+                    <li><a href="#messages"><i class="fas fa-comments"></i> Messages</a></li>
+                </ul>
+            </nav>
+            
+            <div class="logout-btn">
+                <a href="login.html" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="dashboard-header">
+                    <h2>Weekly Task Dashboard</h2>
+                <div class="date-header">
+                    <span id="currentDate">Monday, June 1, 2023</span>
+                    <span id="currentTime">12:00 PM</span>
+                    </div>
+                </div>
+                
+                <div class="add-task-section">
+                <div class="add-task">
+                    <input type="text" id="newTask" placeholder="Add a new task...">
+                    <button id="addTaskBtn"><i class="fas fa-plus"></i> Add</button>
+                    <div class="task-options">
+                        <input type="time" id="taskTime">
+                        <input type="date" id="taskDate">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="weekly-view">
+                    <div class="week-header">
+                        <div class="day-header">Monday</div>
+                        <div class="day-header">Tuesday</div>
+                        <div class="day-header">Wednesday</div>
+                        <div class="day-header">Thursday</div>
+                        <div class="day-header">Friday</div>
+                        <div class="day-header">Saturday</div>
+                        <div class="day-header">Sunday</div>
+                    </div>
+                    
+                    <div class="week-grid">
+                        <div class="day-column" data-day="monday">
+                            <div class="day-tasks" id="monday-tasks"></div>
+                        </div>
+                        <div class="day-column" data-day="tuesday">
+                            <div class="day-tasks" id="tuesday-tasks"></div>
+                        </div>
+                        <div class="day-column" data-day="wednesday">
+                            <div class="day-tasks" id="wednesday-tasks"></div>
+                        </div>
+                        <div class="day-column" data-day="thursday">
+                            <div class="day-tasks" id="thursday-tasks"></div>
+                        </div>
+                        <div class="day-column" data-day="friday">
+                            <div class="day-tasks" id="friday-tasks"></div>
+                        </div>
+                        <div class="day-column" data-day="saturday">
+                            <div class="day-tasks" id="saturday-tasks"></div>
+                        </div>
+                        <div class="day-column" data-day="sunday">
+                            <div class="day-tasks" id="sunday-tasks"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="task-summary">
+                    <div class="summary-card">
+                        <h3>This Week</h3>
+                        <div class="summary-stats">
+                            <div class="stat">
+                                <span class="stat-number" id="totalTasks">0</span>
+                                <span class="stat-label">Total Tasks</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number" id="completedTasks">0</span>
+                                <span class="stat-label">Completed</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number" id="pendingTasks">0</span>
+                                <span class="stat-label">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Timer Section -->
+            <section id="timer" class="content-section">
+                <h2>Focus Timer</h2>
+                <div class="timer-display">
+                    <div id="timerTime">25:00</div>
+                    <div class="timer-controls">
+                        <button id="startTimer"><i class="fas fa-play"></i></button>
+                        <button id="pauseTimer"><i class="fas fa-pause"></i></button>
+                        <button id="resetTimer"><i class="fas fa-redo"></i></button>
+                    </div>
+                </div>
+                
+                <div class="timer-settings">
+                    <div class="setting">
+                        <label>Focus Duration (minutes)</label>
+                        <input type="number" id="focusDuration" value="25" min="1" max="120">
+                    </div>
+                    <div class="setting">
+                        <label>Short Break (minutes)</label>
+                        <input type="number" id="shortBreak" value="5" min="1" max="30">
+                    </div>
+                    <div class="setting">
+                        <label>Long Break (minutes)</label>
+                        <input type="number" id="longBreak" value="15" min="1" max="60">
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Alarm Section -->
+            <section id="alarm" class="content-section">
+                <h2>Alarm</h2>
+                <div class="alarm-container">
+                    <div class="alarm-form">
+                        <input type="time" id="alarmTime">
+                        <input type="text" id="alarmLabel" placeholder="Alarm label">
+                        <button id="setAlarm"><i class="fas fa-plus"></i> Set Alarm</button>
+                    </div>
+                    
+                    <div class="alarms-list">
+                        <h3>Your Alarms</h3>
+                        <ul id="alarmsContainer">
+                            <!-- Alarms will be added here dynamically -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Notes Section -->
+            <section id="notes" class="content-section">
+                <h2>Keep Notes</h2>
+                <div class="notes-container">
+                    <textarea id="notesArea" placeholder="Write your notes here..."></textarea>
+                    <button id="saveNotes"><i class="fas fa-save"></i> Save</button>
+                </div>
+            </section>
+            
+            <!-- Messages Section -->
+            <section id="messages" class="content-section">
+                <h2>Quick Messages</h2>
+                <div class="message-platforms">
+                    <div class="platform" id="instagramBox">
+                        <h3><i class="fab fa-instagram"></i> Instagram</h3>
+                        <div class="platform-content">
+                            <p id="instagramId">ID: Not set</p>
+                            <button class="message-btn" data-platform="instagram"><i class="fas fa-paper-plane"></i> Message</button>
+                        </div>
+                    </div>
+                    
+                    <div class="platform" id="whatsappBox">
+                        <h3><i class="fab fa-whatsapp"></i> WhatsApp</h3>
+                        <div class="platform-content">
+                            <p id="whatsappNumber">Number: Not set</p>
+                            <button class="message-btn" data-platform="whatsapp"><i class="fas fa-paper-plane"></i> Message</button>
+                        </div>
+                    </div>
+                    
+                    <div class="platform" id="gmailBox">
+                        <h3><i class="fab fa-google"></i> Gmail</h3>
+                        <div class="platform-content">
+                            <p id="gmailAddress">Email: Not set</p>
+                            <button class="message-btn" data-platform="gmail"><i class="fas fa-paper-plane"></i> Email</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "planix-app",
+  "version": "1.0.0",
+  "description": "A beautiful productivity app with task management, timer, alarms, and notes",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "build": "echo 'No build step required for static site'"
+  },
+  "keywords": [
+    "productivity",
+    "task-management",
+    "timer",
+    "alarms",
+    "notes",
+    "pomodoro",
+    "web-app"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/planix-app.git"
+  },
+  "homepage": "https://your-app-name.netlify.app"
+} 

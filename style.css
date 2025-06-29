@@ -1,0 +1,806 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    position: relative;
+}
+
+/* Animated Background */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    z-index: -1;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    margin-bottom: 10px;
+}
+
+nav ul li a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+nav ul li.active a, nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.logout-btn {
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.logout-btn a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.logout-btn a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.logout-btn a i {
+    margin-right: 10px;
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.content-section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.content-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.date-header {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* Task Styles */
+.add-task {
+    display: flex;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.add-task input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+}
+
+.add-task input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.add-task button {
+    padding: 12px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-task button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.task-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 5px;
+    display: none;
+    flex-direction: row;
+    gap: 10px;
+    z-index: 10;
+}
+
+.add-task:focus-within .task-options {
+    display: flex;
+}
+
+.task-options input {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 14px;
+}
+
+.task-list {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.task-categories {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.category {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.category.active {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.category:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#tasksContainer {
+    list-style: none;
+}
+
+.task-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.task-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px);
+}
+
+.task-checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: #667eea;
+    cursor: pointer;
+}
+
+.task-text {
+    flex: 1;
+    color: white;
+    font-size: 16px;
+}
+
+.task-completed .task-text {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.task-time {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    min-width: 100px;
+}
+
+.task-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.task-actions button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.task-actions button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Timer Styles */
+.timer-display {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#timerTime {
+    font-size: 72px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.timer-controls button {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.timer-controls button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.timer-settings {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.setting {
+    text-align: center;
+}
+
+.setting label {
+    display: block;
+    color: white;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.setting input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Alarm Styles */
+.alarm-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.alarm-form {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.alarm-form input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+}
+
+.alarm-form input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.alarm-form button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.alarm-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.alarms-list h3 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.alarm-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+}
+
+.alarm-time {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.alarm-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    margin-left: 15px;
+}
+
+.alarm-actions button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.alarm-actions button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Notes Styles */
+.notes-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+}
+
+#notesArea {
+    width: 100%;
+    min-height: 300px;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+#notesArea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#saveNotes {
+    margin-top: 20px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#saveNotes:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Message Platforms Styles */
+.message-platforms {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.platform {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.platform:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
+}
+
+.platform h3 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.platform h3 i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.platform-content p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.message-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.message-btn i {
+    margin-right: 8px;
+}
+
+.message-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Weekly Dashboard Styles */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.dashboard-header h2 {
+    margin-bottom: 0;
+    font-size: 28px;
+    background: linear-gradient(45deg, #fff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.add-task-section {
+    margin-bottom: 30px;
+}
+
+.weekly-view {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.week-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.day-header {
+    text-align: center;
+    padding: 15px 10px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    font-weight: 600;
+    color: white;
+    font-size: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.day-header:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 15px;
+    min-height: 400px;
+}
+
+.day-column {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    min-height: 350px;
+}
+
+.day-column:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.day-column.today {
+    background: rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.4);
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+}
+
+.day-tasks {
+    min-height: 300px;
+}
+
+.day-task-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.day-task-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.day-task-item.completed {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: rgba(34, 197, 94, 0.3);
+    opacity: 0.8;
+}
+
+.day-task-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.day-task-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #667eea;
+    cursor: pointer;
+}
+
+.day-task-text {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    flex: 1;
+    margin-left: 10px;
+}
+
+.day-task-text.completed {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.day-task-time {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.day-task-actions {
+    display: flex;
+    gap: 5px;
+    margin-top: 8px;
+}
+
+.day-task-actions button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.day-task-actions button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.task-summary {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.summary-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 300px;
+}
+
+.summary-card h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 20px;
+}
+
+.summary-stats {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
